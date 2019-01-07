@@ -134,8 +134,30 @@
   (setq org-journal-file-format "%Y-%m-%d")
   (setq org-journal-enable-agenda-integration t)
   ;; capture
+  (add-to-list 'org-modules 'org-protocol)
   (setq org-refile-targets (quote ((nil :maxlevel . 9)
                                    (org-agenda-files :maxlevel . 9))))
+  (setq org-capture-templates
+        (quote (("t" "todo" entry (file org-default-notes-file)
+                 "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+                ("r" "respond" entry (file org-default-notes-file)
+                 "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
+                ("n" "note" entry (file org-default-notes-file)
+                 "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+                ;; ("j" "Journal" entry (file+datetree "~/git/org/diary.org")
+                ;;  "* %?\n%U\n" :clock-in t :clock-resume t)
+                ;;;; org-protocol
+                ("p" "Protocol" entry (file+headline org-default-notes-file "Capture")
+                 "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+                ("L" "Protocol Link" entry (file+headline org-default-notes-file "Capture")
+                 "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
+
+                ("m" "Meeting" entry (file org-default-notes-file)
+                 "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+                ("c" "Call" entry (file org-default-notes-file)
+                 "* CALL %? :CALL:\n%U" :clock-in t :clock-resume t)
+                ("h" "Habit" entry (file org-default-notes-file)
+                 "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
   (setq spaceline-org-clock-p t)
   (evil-define-key '(normal visual motion) org-mode-map
     "gh" 'outline-up-heading
@@ -186,7 +208,6 @@
         sendmail-program "/nix/store/9yfn3sj78l4mzxa3kirzp1077l6zw8hs-msmtp-1.6.6/bin/msmtp"
         user-full-name "Ben Ford")
 
-  ;; TODO - not working
   (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser) t)
 
   ;; Spell checking ftw.

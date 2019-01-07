@@ -37,6 +37,12 @@
   (interactive)
   (org-sort-entries nil ?p))
 
+(defun transform-square-brackets-to-round-ones(string-to-transform)
+  "Transforms [ into ( and ] into ), other chars left unchanged."
+  (concat
+   (mapcar #'(lambda (c) (if (equal c ?[) ?\( (if (equal c ?]) ?\) c))) string-to-transform))
+  )
+
 ;;; Owned Packages
 ;;;; Outshine
 
