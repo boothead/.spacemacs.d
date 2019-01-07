@@ -23,16 +23,16 @@
                              (outline-3 org-level-3)
 
                              ;; Modeline - invis. active, monochrome inactive
-                             (powerline-active1        mode-line)
-                             (powerline-active2        mode-line)
-                             (spaceline-highlight-face mode-line)
+                             ;; (powerline-active1        mode-line)
+                             ;; (powerline-active2        mode-line)
+                             ;; (spaceline-highlight-face mode-line)
 
-                             (powerline-active0        mode-line)
-                             (mode-line-active         mode-line)
-                             (mode-line-inactive       mode-line)
-                             (powerline-inactive0      mode-line)
-                             (powerline-inactive1      mode-line)
-                             (powerline-inactive2      mode-line)
+                             ;; (powerline-active0        mode-line)
+                             ;; (mode-line-active         mode-line)
+                             ;; (mode-line-inactive       mode-line)
+                             ;; (powerline-inactive0      mode-line)
+                             ;; (powerline-inactive1      mode-line)
+                             ;; (powerline-inactive2      mode-line)
                              ))
 
 ;;;; Styling

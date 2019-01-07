@@ -81,7 +81,8 @@ Check `dotspacemacs/get-variable-string-list' for all vars you can configure."
    dotspacemacs-emacs-leader-key  "M-m"
    dotspacemacs-emacs-command-key "SPC"
    dotspacemacs-leader-key        "SPC"
-   dotspacemacs-mode-line-theme   'all-the-icons))
+   dotspacemacs-mode-line-theme   'spacemacs)
+  )
 
 ;;;; Spacemacs/layers
 
@@ -90,7 +91,8 @@ Check `dotspacemacs/get-variable-string-list' for all vars you can configure."
   (setq-default
    dotspacemacs-configuration-layers     '((config   :location local)
                                            (display  :location local)
-                                           (personal :location local))
+                                           ;; (personal :location local)
+                                           )
    dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/")
    dotspacemacs-additional-packages      '()
    dotspacemacs-frozen-packages          '()
@@ -98,18 +100,20 @@ Check `dotspacemacs/get-variable-string-list' for all vars you can configure."
    '(;; Must Exclude (for styling, functionality, bug-fixing reasons)
      fringe importmagic scss-mode vi-tilde-fringe
 
-     ;; Packages I don't use (non-exhaustive)
-     anzu centered-cursor-mode column-enforce-mode company-statistics
-     doom-modeline eshell-prompt-extras evil-anzu evil-mc evil-tutor
-     fancy-battery fill-column-indicator gnuplot golden-ratio indent-guide
-     live-py-mode multi-term multiple-cursors mwim neotree paradox py-isort
-     yapfify)))
+            ;; Packages I don't use (non-exhaustive)
+            anzu centered-cursor-mode column-enforce-mode company-statistics
+            doom-modeline eshell-prompt-extras evil-anzu evil-mc evil-tutor
+            fancy-battery fill-column-indicator gnuplot golden-ratio indent-guide
+            live-py-mode multi-term multiple-cursors mwim neotree paradox py-isort
+            yapfify)))
 
 ;;;; Spacemacs/user-init
 
 (defun dotspacemacs/user-init ()
   "Package independent settings to run before `dotspacemacs/user-config'."
   (fringe-mode 0)
+  ;; (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer--elpa-archives)
+  ;; (push '(spaceline . "melpa-stable") package-pinned-packages)
   (setq custom-file "~/.spacemacs.d/.custom-settings.el"))
 
 ;;;; Spacemacs/user-config
@@ -117,8 +121,6 @@ Check `dotspacemacs/get-variable-string-list' for all vars you can configure."
 
 (defun dotspacemacs/user-config/post-layer-load-config ()
   "Configuration to take place *after all* layers/pkgs are instantiated."
-  (when (configuration-layer/package-used-p 'redo-spacemacs)
-    (redo-spacemacs-bindings))
 
   ;; While toggling with `toggle-frame-fullscreen' works, I could not get
   ;; it to work as a hook attached to the frame-make or window-setup.
