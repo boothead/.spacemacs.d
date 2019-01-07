@@ -5,15 +5,46 @@
    (auto-completion :variables
                     auto-completion-return-key-behavior 'complete
                     auto-completion-tab-key-behavior 'complete
+                    haskell-completion-backend 'ghci
                     auto-completion-enable-snippets-in-popup t)
    better-defaults
-   git
+   (git :variables
+        git-enable-github-support t
+        git-gutter-use-fringe t)
+   github
    (ivy :variables
         ivy-extra-directories nil)
+   (mu4e :variables
+         ;; TODO FIXME
+         mu4e-installation-path "@mu/share/emacs/site-lisp"
+         mu4e-use-maildirs-extension t
+         mu4e-enable-async-operations t
+         mu4e-enable-notifications t
+         mu4e-maildir "~/.mail"
+         ;; TODO FIXME
+         mu4e-mu-binary "/nix/store/4ww1ays3mmwv7wnbp940bh4gcmyzjw7x-mu-1.0/bin/mu"
+         mu4e-headers-include-related t
+         mu4e-drafts-folder "/drafts"
+         mu4e-sent-folder "/sent"
+         mu4e-sent-messages-behavior 'delete
+         mu4e-show-images t
+         mu4e-trash-folder "/trash"
+         mu4e-refile-folder "/archive"
+         mu4e-update-interval 300
+         mu4e-compose-signature-auto-include nil
+         mu4e-use-conversation t
+         ;; TODO FIXME
+         mu4e-get-mail-command "/nix/store/7l178xsh9h7cf32gj76lb8kmxw4w80ly-isync-1.3.0/bin/mbsync -a")
    (org :variables
-        org-want-todo-bindings t)
+        org-enable-github-support t
+        org-enable-bootstrap-support t
+        org-enable-org-journal-support t
+        org-projectile-file "TODOs.org"
+        org-want-todo-bindings t
+        org-enable-reveal-js t)
    (shell :variables
           shell-default-shell 'eshell)
+   spell-checking
    syntax-checking
    (version-control :variables
                     version-control-global-margin t
@@ -32,11 +63,14 @@
    yaml
 
    ;; Languages
-   c-c++
-   clojure
    emacs-lisp
-   haskell
-   hy  ; I wrote this mode/layer, yay
+   hie-nix
+   lsp
+   nixos
+   (purescript :variables
+               purescript-enable-rebuild-on-save t
+               purescript-add-import-on-completion nil
+               )
    (python :variables
            python-test-runner 'pytest
            python-spacemacs-indent-guess nil)
