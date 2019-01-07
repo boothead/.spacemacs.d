@@ -2,16 +2,16 @@
 
 (setq display-packages
       '(;; Owned packages
-        all-the-icons
-        all-the-icons-ivy
-        all-the-icons-dired
+        ;; all-the-icons
+        ;; all-the-icons-ivy
+        ;; all-the-icons-dired
         pretty-mode
         solarized-theme
         (prettify-utils :location (recipe :fetcher github
                                           :repo "Ilazki/prettify-utils.el"))
 
         ;; Elsehwere-owned packages
-        spaceline-all-the-icons
+        ;; spaceline-all-the-icons
         which-key
 
         ;; Personal display-related packages

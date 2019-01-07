@@ -1,7 +1,8 @@
 ;;; -*- lexical-binding: t; -*-
 
 (configuration-layer/declare-layers
- '(;; Core
+ '(
+   ;;;; Core
    (auto-completion :variables
                     auto-completion-return-key-behavior 'complete
                     auto-completion-tab-key-behavior 'complete
@@ -14,19 +15,20 @@
    github
    (ivy :variables
         ivy-extra-directories nil)
+   ;;;; mu4e
    (mu4e :variables
          ;; TODO FIXME
-         mu4e-installation-path "@mu/share/emacs/site-lisp"
+         mu4e-installation-path "/nix/store/4ww1ays3mmwv7wnbp940bh4gcmyzjw7x-mu-1.0/share/emacs/site-lisp"
          mu4e-use-maildirs-extension t
          mu4e-enable-async-operations t
          mu4e-enable-notifications t
          mu4e-maildir "~/.mail"
          ;; TODO FIXME
-         mu4e-mu-binary "/nix/store/4ww1ays3mmwv7wnbp940bh4gcmyzjw7x-mu-1.0/bin/mu"
+         mu4e-mu-binary "/run/current-system/sw/bin/mu"
          mu4e-headers-include-related t
          mu4e-drafts-folder "/drafts"
          mu4e-sent-folder "/sent"
-         mu4e-sent-messages-behavior 'delete
+         ;; mu4e-sent-messages-behavior 'delete
          mu4e-show-images t
          mu4e-trash-folder "/trash"
          mu4e-refile-folder "/archive"
@@ -34,7 +36,8 @@
          mu4e-compose-signature-auto-include nil
          mu4e-use-conversation t
          ;; TODO FIXME
-         mu4e-get-mail-command "/nix/store/7l178xsh9h7cf32gj76lb8kmxw4w80ly-isync-1.3.0/bin/mbsync -a")
+         mu4e-get-mail-command "mbsync -a")
+   ;;;; org
    (org :variables
         org-enable-github-support t
         org-enable-bootstrap-support t
@@ -42,6 +45,7 @@
         org-projectile-file "TODOs.org"
         org-want-todo-bindings t
         org-enable-reveal-js t)
+
    (shell :variables
           shell-default-shell 'eshell)
    spell-checking
@@ -74,16 +78,4 @@
    (python :variables
            python-test-runner 'pytest
            python-spacemacs-indent-guess nil)
-
-
-
-   ;; Experimental/in-flux
-   (mu4e :variables
-         mu4e-installation-path       "/usr/local/share/emacs/site-lisp"
-         mu4e-use-maildirs-extension  t
-         ;; mu4e-enable-async-operations t
-         ;; mu4e-spacemacs-layout-name "@Mu4e"
-         ;; mu4e-spacemacs-layout-binding "m"
-         ;; mu4e-spacemacs-kill-layout-on-exit t
-         )
    ))

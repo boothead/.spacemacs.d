@@ -10,6 +10,7 @@
         magit
         ob org org-bullets
         ranger
+        mu4e
 
         ;; Owned Packages
         auto-dim-other-buffers
@@ -205,7 +206,7 @@
 
   ;; mu4e configuration
   (setq message-send-mail-function 'message-send-mail-with-sendmail
-        sendmail-program "/nix/store/9yfn3sj78l4mzxa3kirzp1077l6zw8hs-msmtp-1.6.6/bin/msmtp"
+        sendmail-program "/home/ben/.nix-profile/bin/msmtp"
         user-full-name "Ben Ford")
 
   (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser) t)
@@ -226,7 +227,7 @@
   (add-hook 'message-send-mail-hook 'choose-msmtp-account)
 
   ;; try and make html a bit nicer
-  (setq mu4e-html2text-command "/nix/store/q48clr6ayxkg4x3b1w1af9h121za0h0l-w3m-0.5.3+git20161120/bin/w3m -dump -T text/html -cols 72")
+  (setq mu4e-html2text-command "w3m -dump -T text/html -cols 72")
 
   ;; This sets up my different context for my personal and work emails.
   (setq mu4e-contexts
@@ -238,7 +239,7 @@
                              (mu4e-message-maildir-matches msg "^/ben-gmail")))
              :leave-func (lambda () (mu4e-clear-caches))
              :vars '((user-mail-address     . "ben.fordnz@gmail.com")
-                     (user-full-name        . "Nan Zhong")
+                     (user-full-name        . "Ben Ford")
                      (mu4e-sent-folder      . "/ben-gmail/sent")
                      ;; (mu4e-drafts-folder    . "/ben-gmail/drafts")
                      ;; (mu4e-trash-folder     . "/ben-gmail/bin")
