@@ -139,7 +139,7 @@
   (setq org-refile-targets (quote ((nil :maxlevel . 9)
                                    (org-agenda-files :maxlevel . 9))))
   (setq org-capture-templates
-        (quote (("t" "todo" entry (file org-default-notes-file)
+        (quote (("t" "todo" entry (file+headline org-default-notes-file "Tasks")
                  "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
                 ("r" "respond" entry (file org-default-notes-file)
                  "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
@@ -153,8 +153,8 @@
                 ("L" "Protocol Link" entry (file+headline org-default-notes-file "Capture")
                  "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")
 
-                ("m" "Meeting" entry (file org-default-notes-file)
-                 "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+                ("m" "Meeting" entry (file+headline org-default-notes-file "Meetings")
+                 "* MEETING with %? :MEETING:\nSCHEDULED: %t\n%U - %a" :clock-in t :clock-resume t)
                 ("c" "Call" entry (file org-default-notes-file)
                  "* CALL %? :CALL:\n%U" :clock-in t :clock-resume t)
                 ("h" "Habit" entry (file org-default-notes-file)
