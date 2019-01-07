@@ -54,8 +54,9 @@ Check `dotspacemacs/get-variable-string-list' for all vars you can configure."
    dotspacemacs-default-font `(,(if (x-list-fonts "Operator Mono")
                                     "operator mono medium"
                                   "Source Code Pro")
-                               :size ,(if (= 1440 (display-pixel-height)) 20 18))
-   dotspacemacs-themes       '(solarized-light
+                               :size ,(if (= 1080 (display-pixel-height)) 12 22))
+   dotspacemacs-themes       '(spacemacs-dark
+                               solarized-light
                                zenburn)
 
    ;; General
