@@ -26,9 +26,6 @@
 
 ;;;; Configuration
 
-(defvar server? (if eric? t nil)
-  "Alias `dotspacemacs-enable-server'. Defaults to nil for non-eric users.")
-
 (defvar redo-bindings? (if eric? t nil)
   "Redo spacemacs bindings? Defaults to nil for non-eric users.
 
@@ -68,10 +65,10 @@ Check `dotspacemacs/get-variable-string-list' for all vars you can configure."
                                                  vim-style-remap-Y-to-y$ t)
    dotspacemacs-elpa-https                 nil
    dotspacemacs-elpa-subdirectory          nil
-   dotspacemacs-enable-server              server?
+   dotspacemacs-enable-server              t
    dotspacemacs-fullscreen-at-startup      t
    dotspacemacs-large-file-size            5
-   dotspacemacs-persistent-server          server?
+   dotspacemacs-persistent-server          nil
    dotspacemacs-pretty-docs                t
    dotspacemacs-search-tools               '("ag" "rg" "pt" "ack" "grep")
    dotspacemacs-scratch-mode               'org-mode
