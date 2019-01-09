@@ -126,14 +126,16 @@
   (add-hook 'org-mode-hook 'flyspell-mode))
 
 (defun config/post-init-org ()
-  (setq org-directory "~/docs/org/")
-  (setq org-agenda-files (list org-directory))
-  (setq org-brain-path "~/docs/org/brain")
-  (setq org-default-notes-file (concat org-directory "inbox.org"))
-  ;; journal
-  (setq org-journal-dir "~/docs/org/journal")
-  (setq org-journal-file-format "%Y-%m-%d")
-  (setq org-journal-enable-agenda-integration t)
+  (setq org-directory "~/docs/org/"
+        org-agenda-files (list org-directory)
+        org-brain-path "~/docs/org/brain"
+        org-default-notes-file (concat org-directory "inbox.org")
+        org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
+        ;; journal
+        org-journal-dir "~/docs/org/journal"
+        org-journal-file-format "%Y-%m-%d"
+        org-journal-enable-agenda-integration t
+        )
   ;; capture
   (add-to-list 'org-modules 'org-protocol)
   (setq org-refile-targets (quote ((nil :maxlevel . 9)
