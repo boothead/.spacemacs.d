@@ -131,15 +131,17 @@
         org-brain-path "~/docs/org/brain"
         org-default-notes-file (concat org-directory "inbox.org")
         org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
+        org-startup-indented t
+        spaceline-org-clock-p t
         ;; journal
         org-journal-dir "~/docs/org/journal"
         org-journal-file-format "%Y-%m-%d"
         org-journal-enable-agenda-integration t
+        org-refile-targets (quote ((nil :maxlevel . 9)
+                                   (org-agenda-files :maxlevel . 9)))
         )
-  ;; capture
+;;;;; capture
   (add-to-list 'org-modules 'org-protocol)
-  (setq org-refile-targets (quote ((nil :maxlevel . 9)
-                                   (org-agenda-files :maxlevel . 9))))
   (setq org-capture-templates
         (quote (("t" "todo" entry (file+headline org-default-notes-file "Tasks")
                  "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
@@ -149,7 +151,7 @@
                  "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
                 ;; ("j" "Journal" entry (file+datetree "~/git/org/diary.org")
                 ;;  "* %?\n%U\n" :clock-in t :clock-resume t)
-                ;;;; org-protocol
+                ;; org-protocol
                 ("p" "Protocol" entry (file+headline org-default-notes-file "Capture")
                  "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
                 ("L" "Protocol Link" entry (file+headline org-default-notes-file "Capture")
@@ -161,7 +163,7 @@
                  "* CALL %? :CALL:\n%U" :clock-in t :clock-resume t)
                 ("h" "Habit" entry (file org-default-notes-file)
                  "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
-  (setq spaceline-org-clock-p t)
+
   (evil-define-key '(normal visual motion) org-mode-map
     "gh" 'outline-up-heading
     "gj" 'outline-forward-same-level
@@ -232,6 +234,7 @@
   (setq mu4e-html2text-command "w3m -dump -T text/html -cols 72")
 
   ;; This sets up my different context for my personal and work emails.
+;;;;; mu4e-contexts
   (setq mu4e-contexts
         `( ,(make-mu4e-context
              :name "ben-gmail"
