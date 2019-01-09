@@ -55,10 +55,12 @@
                     version-control-diff-tool 'git-gutter+)
 
    ;; Misc
+   (colors :variables colors-colorize-identifiers 'all)
    graphviz
    ranger
    (ibuffer :variables
             ibuffer-group-buffers-by 'projects)
+   theming
 
    ;; Markups
    csv
