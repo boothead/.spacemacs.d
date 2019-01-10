@@ -38,7 +38,7 @@
 ;;;; Styling
 ;;;;; Headers
 
-(setq display/headers/common '(:underline t :inherit nil))
+(setq display/headers/common '(:underline nil :inherit nil))
 (setq display/headers/zenburn
       `((org-level-1
          ,@display/headers/common
