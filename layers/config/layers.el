@@ -55,7 +55,8 @@
                     version-control-diff-tool 'git-gutter+)
 
    ;; Misc
-   (colors :variables colors-colorize-identifiers 'all)
+   (colors :variables
+           colors-colorize-identifiers nil)
    graphviz
    ranger
    (ibuffer :variables
