@@ -94,7 +94,7 @@
 ;;;; Org
 
 (defun config/pre-init-org-bullets ()
-  (setq org-bullets-bullet-list '("" "" "" "")))
+  (setq org-bullets-bullet-list '("" "" "" "" "" "")))
 
 (defun config/pre-init-ob ()
   (setq org-confirm-babel-evaluate   nil)
