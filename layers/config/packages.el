@@ -210,7 +210,7 @@
 
   ;; mu4e configuration
   (setq message-send-mail-function 'message-send-mail-with-sendmail
-        sendmail-program "/home/ben/.nix-profile/bin/msmtp"
+        sendmail-program "/run/current-system/sw/bin/msmtp"
         user-full-name "Ben Ford"
         mu4e-html2text-command "w3m -dump -T text/html -cols 72"
         mu4e-view-show-images t
