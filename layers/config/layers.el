@@ -32,7 +32,7 @@
          mu4e-show-images t
          mu4e-trash-folder "/trash"
          mu4e-refile-folder "/archive"
-         mu4e-update-interval 300
+         ;; mu4e-update-interval 300
          mu4e-compose-signature-auto-include nil
          mu4e-use-conversation t
          ;; TODO FIXME
