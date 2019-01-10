@@ -39,6 +39,11 @@
   (bind-keys ("C-l" . evil-avy-goto-line)
              ("C-h" . avy-pop-mark)))
 
+;;;; Colors
+
+(defun config/post-init-colors ()
+  (rainbow-mode))
+
 ;;;; Eshell
 
 (defun config/pre-init-eshell ()
