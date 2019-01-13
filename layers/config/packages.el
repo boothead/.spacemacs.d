@@ -127,10 +127,12 @@
           ("sh" "#+BEGIN_SRC haskell\n\n#+END_SRC")
           ("sp" "#+BEGIN_SRC python\n\n#+END_SRC")))
 
-  (add-hook 'org-mode-hook (lambda () (auto-fill-mode 1)))
-  (add-hook 'org-mode-hook 'flyspell-mode))
+  )
 
 (defun config/post-init-org ()
+;;;;; hooks
+  (add-hook 'org-mode-hook (lambda () (auto-fill-mode 1)))
+  (add-hook 'org-mode-hook 'flyspell-mode)
   (setq org-directory "~/docs/org/"
         org-agenda-files (list org-directory)
         org-brain-path "~/docs/org/brain"
