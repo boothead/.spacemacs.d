@@ -68,6 +68,10 @@
    html
    markdown
    yaml
+   (latex :variables
+          latex-enable-auto-fill t
+          latex-enable-folding t)
+   pdf-tools
 
    ;; Languages
    emacs-lisp

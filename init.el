@@ -136,6 +136,7 @@ Check `dotspacemacs/get-variable-string-list' for all vars you can configure."
 (defun dotspacemacs/user-config ()
   "Configuration that cannot be delegated to layers."
   (dotspacemacs/user-config/post-layer-load-config)
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
   ;; Drop-in whatever config here without having to worry about good practices
   )
