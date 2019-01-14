@@ -194,7 +194,7 @@
         org-treat-S-cursor-todo-selection-as-state-change nil
         ;; agenda
         org-agenda-dim-blocked-tasks nil
-        org-agenda-compact-blocks nil
+        org-agenda-compact-blocks t
         )
 ;;;;; org-capture
   (setq org-capture-templates
@@ -221,7 +221,7 @@
 
 ;;;;; org-todo
   (setq org-todo-keywords
-        (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+        (quote ((sequence "TODO(t!)" "NEXT(n!)" "|" "DONE(d!)")
                 (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "CALL" "MEETING")))
         org-todo-keyword-faces
         (quote (("TODO" :foreground "red" :weight bold)
@@ -249,6 +249,15 @@
           nil ;; tags for non stuck projects e.b. ("@shop")
           "\\<IGNORE\\>") ;; regex matching non-stuck
         )
+  (setq org-agenda-time-grid
+        '((daily today require-timed)
+          (600 800 1000 1200 1400 1600 1800 2000)
+          "......" "---------"))
+  (setq org-habit-show-all-today t
+        org-habit-show-habits-only-for-today nil
+        org-agenda-time-leading-zero t
+        org-habit-graph-column 80
+        org-agenda-show-future-repeats 'next)
   (setq org-agenda-custom-commands
         (quote (("N" "Notes" tags "NOTE"
                  ((org-agenda-overriding-header "Notes")
@@ -256,9 +265,11 @@
                 ("h" "Habits" tags-todo "STYLE=\"habit\""
                  ((org-agenda-overriding-header "Habits")
                   (org-agenda-sorting-strategy
-                   '(todo-state-down effort-up category-keep))))
+                   '(todo-state-down timestamp-up scheduled-up time-up category-keep))))
                 (" " "Agenda"
-                 ((agenda "" nil)
+                 ((agenda ""
+                          ((org-agenda-sorting-strategy
+                            '(time-up scheduled-up timestamp-up time-up deadline-up priority-down))))
                   (tags "LEVEL=2+REFILE"
                         ((org-agenda-overriding-header "Tasks to Refile")
                          (org-tags-match-list-sublevels nil)))
@@ -321,7 +332,10 @@
                   ;;        (org-agenda-skip-function 'bh/skip-non-archivable-tasks)
                   ;;        (org-tags-match-list-sublevels nil)))
                   )
-                 nil))))
+                 nil)
+                )
+               )
+        )
 
   )
 
