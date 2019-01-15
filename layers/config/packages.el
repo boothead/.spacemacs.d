@@ -186,7 +186,7 @@
         org-journal-file-format "%Y-%m-%d"
         org-journal-enable-agenda-integration t
         ;; refile
-        org-refile-use-outline-path t
+        org-refile-use-outline-path nil
         org-refile-targets (quote ((nil :maxlevel . 9)
                                    (org-agenda-files :maxlevel . 9)))
         ;; todo
