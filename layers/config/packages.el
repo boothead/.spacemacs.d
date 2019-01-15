@@ -378,6 +378,7 @@
         sendmail-program "/run/current-system/sw/bin/msmtp"
         user-full-name "Ben Ford"
         mu4e-html2text-command "w3m -dump -T text/html -cols 72"
+        mu4e-attachment-dir "~/docs/"
         mu4e-view-show-images t
         )
 
