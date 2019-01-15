@@ -117,15 +117,15 @@
         '((65 :inherit org-priority :foreground "red")
           (66 :inherit org-priority :foreground "brown")
           (67 :inherit org-priority :foreground "blue")))
-  (setq org-structure-template-alist
-        '(("n" "#+NAME: ?")
-          ("L" "#+LaTeX: ")
-          ("h" "#+HTML: ")
-          ("q" "#+BEGIN_QUOTE\n\n#+END_QUOTE")
-          ("s" "#+BEGIN_SRC ?\n\n#+END_SRC")
-          ("se" "#+BEGIN_SRC emacs-lisp\n\n#+END_SRC")
-          ("sh" "#+BEGIN_SRC haskell\n\n#+END_SRC")
-          ("sp" "#+BEGIN_SRC python\n\n#+END_SRC")))
+  ;; (setq org-structure-template-alist
+  ;;       '(("n" "#+NAME: ?")
+  ;;         ("L" "#+LaTeX: ")
+  ;;         ("h" "#+HTML: ")
+  ;;         ("q" "#+BEGIN_QUOTE\n\n#+END_QUOTE")
+  ;;         ("s" "#+BEGIN_SRC ?\n\n#+END_SRC")
+  ;;         ("se" "#+BEGIN_SRC emacs-lisp\n\n#+END_SRC")
+  ;;         ("sh" "#+BEGIN_SRC haskell\n\n#+END_SRC")
+  ;;         ("sp" "#+BEGIN_SRC python\n\n#+END_SRC")))
 
   )
 
