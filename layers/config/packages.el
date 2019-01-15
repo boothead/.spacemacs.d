@@ -257,6 +257,8 @@
         org-habit-show-habits-only-for-today nil
         org-agenda-time-leading-zero t
         org-habit-graph-column 80
+        org-log-into-drawer t
+        org-todo-repeat-to-state "NEXT"
         org-agenda-show-future-repeats 'next)
   (setq org-agenda-custom-commands
         (quote (("N" "Notes" tags "NOTE"
