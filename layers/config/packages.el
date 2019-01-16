@@ -16,7 +16,7 @@
         auto-dim-other-buffers
         dash-functional
         faceup
-        outshine  ; also configures `outline-mode'
+        ;; outshine  ; also configures `outline-mode'
         s
 
         ;; Local Packages
@@ -528,7 +528,7 @@
       ;; Fix the new bindings in outline-minor-mode overwriting org-mode-map
       ;; I also add advice here because it mirrors outshine modifications
       (spacemacs|use-package-add-hook org
-        :post-config
+        :post-init
         (progn
           (bind-keys :map org-mode-map
                      ([(meta return)]       . org-meta-return)
