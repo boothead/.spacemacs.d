@@ -74,6 +74,7 @@ Check `dotspacemacs/get-variable-string-list' for all vars you can configure."
    dotspacemacs-pretty-docs                t
    dotspacemacs-search-tools               '("ag" "rg" "pt" "ack" "grep")
    dotspacemacs-scratch-mode               'org-mode
+   dotspacemacs-startup-banner             nil
    dotspacemacs-startup-lists              nil
    dotspacemacs-whitespace-cleanup         'trailing
 
