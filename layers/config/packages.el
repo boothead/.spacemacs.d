@@ -273,7 +273,7 @@
                 (" " "Agenda"
                  ((agenda ""
                           ((org-agenda-sorting-strategy
-                            '(time-up scheduled-up timestamp-up time-up deadline-up priority-down))))
+                            '(time-up scheduled-up priority-down deadline-up))))
                   (tags "LEVEL=2+REFILE"
                         ((org-agenda-overriding-header "Tasks to Refile")
                          (org-tags-match-list-sublevels nil)))
@@ -281,13 +281,13 @@
                              ((org-agenda-overriding-header "Stuck Projects")
                               (org-agenda-skip-function 'bh/skip-non-stuck-projects)
                               (org-agenda-sorting-strategy
-                               '(category-keep))))
+                               '(priority-down category-keep))))
                   (tags-todo "-HOLD-CANCELLED/!"
                              ((org-agenda-overriding-header "Projects")
                               (org-agenda-skip-function 'bh/skip-non-projects)
                               (org-tags-match-list-sublevels 'indented)
                               (org-agenda-sorting-strategy
-                               '(category-keep))))
+                               '(priority-down category-keep))))
                   (tags-todo "-CANCELLED/!NEXT"
                              ((org-agenda-overriding-header (concat "Project Next Tasks"
                                                                     (if bh/hide-scheduled-and-waiting-next-tasks
@@ -299,7 +299,7 @@
                               (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
                               (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
                               (org-agenda-sorting-strategy
-                               '(todo-state-down effort-up category-keep))))
+                               '(priority-down todo-state-down effort-up category-keep))))
                   (tags-todo "-REFILE-CANCELLED-WAITING-HOLD/!"
                              ((org-agenda-overriding-header (concat "Project Subtasks"
                                                                     (if bh/hide-scheduled-and-waiting-next-tasks
@@ -310,7 +310,7 @@
                               (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
                               (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
                               (org-agenda-sorting-strategy
-                               '(category-keep))))
+                               '(priority-down category-keep))))
                   (tags-todo "-REFILE-CANCELLED-WAITING-HOLD/!"
                              ((org-agenda-overriding-header (concat "Standalone Tasks"
                                                                     (if bh/hide-scheduled-and-waiting-next-tasks
@@ -321,7 +321,7 @@
                               (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
                               (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
                               (org-agenda-sorting-strategy
-                               '(category-keep))))
+                               '(priority-down category-keep))))
                   (tags-todo "-CANCELLED+WAITING|HOLD/!"
                              ((org-agenda-overriding-header (concat "Waiting and Postponed Tasks"
                                                                     (if bh/hide-scheduled-and-waiting-next-tasks
@@ -382,6 +382,7 @@
         mu4e-html2text-command "w3m -dump -T text/html -cols 72"
         mu4e-attachment-dir "~/docs/"
         mu4e-view-show-images t
+        mu4e-update-interval 300
         )
 
   (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser) t)
