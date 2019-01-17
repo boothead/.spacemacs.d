@@ -527,6 +527,11 @@
       (advice-add 'outshine-insert-heading    :after 'evil-insert-advice)
       (advice-add 'outshine-insert-subheading :after 'evil-insert-advice)
 
+      ;; Fix outline for haskell mode so that ghc doesn't complain
+      (spacemacs|use-package-add-hook haskell
+        :post-init
+        (set (make-local-variable 'outline-regexp "-- [*\f]+")))
+
       ;; Fix the new bindings in outline-minor-mode overwriting org-mode-map
       ;; I also add advice here because it mirrors outshine modifications
       (spacemacs|use-package-add-hook org
