@@ -74,6 +74,7 @@
    pdf-tools
 
    ;; Languages
+   javascript
    emacs-lisp
    hie-nix
    lsp
@@ -85,5 +86,5 @@
    (python :variables
            python-test-runner 'pytest
            python-spacemacs-indent-guess nil)
-   google-calendar
+   (google-calendar :location local)
    ))
