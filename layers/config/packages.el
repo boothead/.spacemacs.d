@@ -20,11 +20,11 @@
         s
 
         ;; Local Packages
+        org-gcal
         (redo-spacemacs :location local)))
 
 ;;; Unowned Packages
 ;;;; Aggressive indent
-
 (defun config/pre-init-aggressive-indent ()
   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
   (add-hook 'clojure-mode-hook    #'aggressive-indent-mode)
@@ -175,7 +175,7 @@
         bh/keep-clock-running nil)
 ;;;;; org-settings
   (setq org-directory "~/docs/org/"
-        org-agenda-files (list org-directory)
+        org-agenda-files (list org-directory (concat org-directory "/cal"))
         org-brain-path "~/docs/org/brain"
         org-default-notes-file (concat org-directory "inbox.org")
         org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
@@ -491,6 +491,28 @@
 (defun config/init-faceup ()
   (use-package faceup
     :defer t))
+
+;;;; Google Calendars
+
+(defun config/post-init-org-gcal ()
+  ;; (load-file "~/.spacemacs.d/.iohk-cal-secret.el")
+  (message "post-init-cal")
+  (setq org-gcal-file-alist
+        '(("ben.ford@iohk.io"    . "~/docs/org/cal/cal-iohk.org")
+          ("ben@commandodev.com" . "~/docs/org/cal/cal-cdodev.org")
+          ("ben.ford@tweag.io"   . "~/docs/org/cal/cal-tweag.org")
+          ;; ("your_second_calendar_id@gmail.com" . "/path/to/second_schedule_file.org"))
+          )
+        )
+  (setq calendar-month-name-array
+        ["January" "February" "March"     "April"   "May"      "June"
+         "July"    "August"   "September" "October" "November" "December"])
+
+  ;; Week days
+  (setq calendar-day-name-array
+        ["Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday"])
+
+  )
 
 ;;;; Outshine
 

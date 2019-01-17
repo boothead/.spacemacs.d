@@ -26,6 +26,7 @@
 
 ;;;; Configuration
 
+(load-file "~/.spacemacs.d/.iohk-cal-secret.el")
 (defvar redo-bindings? (if eric? t nil)
   "Redo spacemacs bindings? Defaults to nil for non-eric users.
 
@@ -136,22 +137,7 @@ Check `dotspacemacs/get-variable-string-list' for all vars you can configure."
 
 (defun dotspacemacs/user-config ()
   "Configuration that cannot be delegated to layers."
-  (load-file "~/.spacemacs.d/.iohk-cal-secret.el")
   (dotspacemacs/user-config/post-layer-load-config)
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-
-  (setq org-gcal-file-alist
-        '(("ben.ford@iohk.io" . "~/docs/org/cal/iohk.org")
-          ;; ("your_second_calendar_id@gmail.com" . "/path/to/second_schedule_file.org"))
-          )
-        )
-  (setq calendar-month-name-array
-        ["January" "February" "March"     "April"   "May"      "June"
-         "July"    "August"   "September" "October" "November" "December"])
-
-  ;; Week days
-  (setq calendar-day-name-array
-        ["Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday"])
-
   ;; Drop-in whatever config here without having to worry about good practices
   )
