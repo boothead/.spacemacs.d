@@ -85,4 +85,5 @@
    (python :variables
            python-test-runner 'pytest
            python-spacemacs-indent-guess nil)
+   google-calendar
    ))

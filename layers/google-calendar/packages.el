@@ -11,7 +11,7 @@
 
 ;;; Commentary:
 
-(defconst google-calendar-packages
+(setq google-calendar-packages
   '(org-gcal
     calfw))
 
