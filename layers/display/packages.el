@@ -2,10 +2,10 @@
 
 (setq display-packages
       '(;; Owned packages
-        ;; all-the-icons
-        ;; all-the-icons-ivy
-        ;; all-the-icons-dired
-        pretty-mode
+        all-the-icons
+        all-the-icons-ivy
+        all-the-icons-dired
+        ;; pretty-mode
         solarized-theme
         (prettify-utils :location (recipe :fetcher github
                                           :repo "Ilazki/prettify-utils.el"))
@@ -19,7 +19,9 @@
         (pretty-eshell   :location local)
         (pretty-fonts    :location local)
         (pretty-magit    :location local)
-        (pretty-outlines :location local)))
+        (pretty-outlines :location local)
+        )
+      )
 
 ;;; Owned Packages
 ;;;; All-the-icons

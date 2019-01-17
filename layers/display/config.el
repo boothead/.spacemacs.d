@@ -42,28 +42,30 @@
 (setq display/headers/zenburn
       `((org-level-1
          ,@display/headers/common
-         :height 1.35
+         ;; :height 1.35
          :foreground "#DFAF8F")
         (org-level-2
          ,@display/headers/common
-         :height 1.25
+         ;; :height 1.25
          :foreground "#BFEBBF")
         (org-level-3
          ,@display/headers/common
-         :height 1.15
+         ;; :height 1.15
          :foreground "#7CB8BB")))
 (setq display/headers/solarized-light
       `((org-level-1
          ,@display/headers/common
-         :height 1.35
+         ;; :height 1.35
          :foreground "#a71d31")
         (org-level-2
          ,@display/headers/common
-         :height 1.25
+         ;; :height 1.25
          :foreground "#8D6B94")
         (org-level-3
-         ,@display/headers/common
-         :height 1.15)))
+         ,@display/headers/common)
+         ;; :height 1.15)
+        )
+       )
 
 ;;;;; Org-blocks
 
