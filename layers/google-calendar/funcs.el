@@ -16,14 +16,26 @@
     (org-gcal-refresh-token)
     (org-gcal-fetch))
 
+  (defun get-capture-target-file ()
+    (let (capture-target (org-capture-get :target))
+      (if (member (car capture-target)
+                  (list 'file 'file+headline 'file+olp 'file+regexp))
+          (f-expand (nth 1 capture-target))
+        nil)
+      )
+    )
+
   (defun google-calendar/sync-cal-after-capture ()
     "Sync calendar after a event was added with org-capture.
 The function can be run automatically with the 'org-capture-after-finalize-hook'."
+    (require 'org)
     (when-let ((cal-files (mapcar 'f-expand (mapcar 'cdr org-gcal-file-alist)))
                (capture-target (f-expand (car (cdr (org-capture-get :target)))))
+               ;; (capture-target (get-capture-target-file))
                (cal-file-exists (and (mapcar 'f-file? cal-files)))
                (capture-target-isfile (eq (car (org-capture-get :target)) 'file))
-               (capture-target-is-cal-file (member capture-target cal-files)))
+               (capture-target-is-cal-file (member capture-target cal-files))
+               )
       (org-gcal-refresh-token)
       (org-gcal-post-at-point))))
 

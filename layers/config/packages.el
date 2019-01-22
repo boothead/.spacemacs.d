@@ -11,6 +11,7 @@
         ob org org-bullets
         ranger
         mu4e
+        prodigy
 
         ;; Owned Packages
         auto-dim-other-buffers
@@ -177,7 +178,7 @@
   (setq org-directory "~/docs/org/"
         org-agenda-files (list org-directory (concat org-directory "/cal"))
         org-brain-path "~/docs/org/brain"
-        org-default-notes-file (concat org-directory "inbox.org")
+        org-default-notes-file "~/docs/org/inbox.org" ;; (concat org-directory "inbox.org")
         org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
         org-startup-indented t
         spaceline-org-clock-p t
@@ -272,8 +273,11 @@
                    '(todo-state-down timestamp-up scheduled-up time-up category-keep))))
                 (" " "Agenda"
                  ((agenda ""
-                          ((org-agenda-sorting-strategy
-                            '(time-up scheduled-up priority-down deadline-up))))
+                          ((org-agenda-span 'day)
+                           (org-agenda-sorting-strategy
+                            '(time-up scheduled-up priority-down deadline-up))
+                           )
+                          )
                   (tags "LEVEL=2+REFILE"
                         ((org-agenda-overriding-header "Tasks to Refile")
                          (org-tags-match-list-sublevels nil)))
@@ -448,7 +452,17 @@
                      (mu4e-refile-folder    . "/cdodev/archive")))))
   )
 
+;;;; Prodigy
 
+(defun config/post-init-prodigy ()
+  (prodigy-define-service
+   :name "Hugo Personal Blog"
+   :command "/run/current-system/sw/bin/hugo"
+   :args '("server" "-D" "hugo-redlounge")
+   :cwd "~/docs/org/commandodev.com"
+   :tags '(personal)
+   :stop-signal 'sigkill
+   :kill-process-buffer-on-stop t))
 
 ;;;; Ranger
 

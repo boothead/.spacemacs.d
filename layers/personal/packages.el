@@ -12,8 +12,8 @@
     :if (executable-find "hugo")
     :init
     (progn
-      (setq blog-dir        '("~/dev/blog"))
-      (setq blog-public-dir '("~/dev/public-blog")))
+      (setq blog-dir        '("~/docs/org/commandodev.com"))
+      (setq blog-public-dir '("~/dev/public-commandodev.com")))
 
     :config
     (spacemacs/set-leader-keys

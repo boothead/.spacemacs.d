@@ -19,7 +19,7 @@
         (pretty-eshell   :location local)
         (pretty-fonts    :location local)
         (pretty-magit    :location local)
-        (pretty-outlines :location local)
+        ;; (pretty-outlines :location local)
         )
       )
 
@@ -126,6 +126,7 @@
   ;; Misc Segments
   (spaceline-toggle-all-the-icons-eyebrowse-workspace-off)
   (spaceline-toggle-all-the-icons-flycheck-status-off)
+  (spaceline-toggle-org-pomodoro-on)
   (spaceline-toggle-all-the-icons-time-off))
 
 ;;; Pretty Packages

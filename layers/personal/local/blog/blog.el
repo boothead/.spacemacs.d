@@ -40,7 +40,7 @@
             (shell-command "git rm -rf .")
             (shell-command "git clean -fxd")
             (with-temp-file "CNAME"
-              (insert "www.modernemacs.com\nmodernemacs.com"))
+              (insert "www.commandodev.com\ncommandodev.com"))
 
             (with-dir blog-dir (->> blog-public-dir
                                   (concat "hugo -d ")

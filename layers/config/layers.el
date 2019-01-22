@@ -44,6 +44,7 @@
         org-enable-org-journal-support t
         org-projectile-file "TODOs.org"
         org-want-todo-bindings t
+        org-enable-hugo-support t
         org-enable-reveal-js t)
 
    (shell :variables
@@ -62,6 +63,7 @@
    (ibuffer :variables
             ibuffer-group-buffers-by 'projects)
    theming
+   prodigy
 
    ;; Markups
    csv
