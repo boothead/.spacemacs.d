@@ -456,13 +456,22 @@
 
 (defun config/post-init-prodigy ()
   (prodigy-define-service
-   :name "Hugo Personal Blog"
-   :command "/run/current-system/sw/bin/hugo"
-   :args '("server" "-D" "hugo-redlounge")
-   :cwd "~/docs/org/commandodev.com"
-   :tags '(personal)
-   :stop-signal 'sigkill
-   :kill-process-buffer-on-stop t))
+    :name "Hugo Personal Blog"
+    :command "/run/current-system/sw/bin/hugo"
+    :args '("server" "-D" "hugo-redlounge")
+    :cwd "~/docs/org/commandodev.com"
+    :tags '(personal)
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+  (prodigy-define-service
+    :name "IOHK Dev handbook"
+    :command "/run/current-system/sw/bin/hugo"
+    :args '("server" "-D" "-p" "1314")
+    :cwd "~/dev/tweag/iohk/dev-handbook"
+    :tags '(iohk)
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+  )
 
 ;;;; Ranger
 
