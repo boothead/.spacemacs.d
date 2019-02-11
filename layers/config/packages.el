@@ -194,6 +194,7 @@
         ;; todo
         org-use-fast-todo-selection t
         org-treat-S-cursor-todo-selection-as-state-change nil
+        org-tags-exclude-from-inheritance '("GOAL" "MILESTONE")
         ;; agenda
         org-agenda-dim-blocked-tasks nil
         org-agenda-compact-blocks t
@@ -271,6 +272,9 @@
                  ((org-agenda-overriding-header "Habits")
                   (org-agenda-sorting-strategy
                    '(todo-state-down timestamp-up scheduled-up time-up category-keep))))
+                ("G" "Goals" tags "GOAL|MILESTONE"
+                 ((org-agenda-overriding-header "Goals")
+                  (org-tags-match-list-sublevels t)))
                 (" " "Agenda"
                  ((agenda ""
                           ((org-agenda-span 'day)
