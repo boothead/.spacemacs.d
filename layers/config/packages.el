@@ -219,6 +219,8 @@
                  "* MEETING with %? :MEETING:\nSCHEDULED: %t\n%U - %a" :clock-in t :clock-resume t)
                 ("c" "Call" entry (file org-default-notes-file)
                  "* CALL %? :CALL:\n%U" :clock-in t :clock-resume t)
+                ("b" "Blog Post" entry (file+headline "/home/ben/docs/org/commandodev.com/site.org" "Blog")
+                 (file "/home/ben/docs/org/commandodev.com/blog-post-template.txt"))
                 ("h" "Habit" entry (file org-default-notes-file)
                  "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
@@ -462,7 +464,7 @@
   (prodigy-define-service
     :name "Hugo Personal Blog"
     :command "/run/current-system/sw/bin/hugo"
-    :args '("server" "-D" "hugo-redlounge")
+    :args '("server" "-D" "--disableFastRender")
     :cwd "~/docs/org/commandodev.com"
     :tags '(personal)
     :stop-signal 'sigkill
@@ -525,8 +527,7 @@
   ;; (load-file "~/.spacemacs.d/.iohk-cal-secret.el")
   (message "post-init-cal")
   (setq org-gcal-file-alist
-        '(("ben.ford@iohk.io"    . "~/docs/org/cal/cal-iohk.org")
-          ("ben@commandodev.com" . "~/docs/org/cal/cal-cdodev.org")
+        '(("ben@commandodev.com" . "~/docs/org/cal/cal-cdodev.org")
           ("ben.ford@tweag.io"   . "~/docs/org/cal/cal-tweag.org")
           ;; ("your_second_calendar_id@gmail.com" . "/path/to/second_schedule_file.org"))
           )
