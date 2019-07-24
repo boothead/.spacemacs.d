@@ -176,7 +176,7 @@
         bh/keep-clock-running nil)
 ;;;;; org-settings
   (setq org-directory "~/docs/org/"
-        org-agenda-files (list org-directory (concat org-directory "/cal"))
+        org-agenda-files (list org-directory (concat org-directory "/cal") (concat org-directory "/commandodev.com"))
         org-brain-path "~/docs/org/brain"
         org-default-notes-file "~/docs/org/inbox.org" ;; (concat org-directory "inbox.org")
         org-blank-before-new-entry '((heading . nil) (plain-list-item . nil))
@@ -198,6 +198,9 @@
         ;; agenda
         org-agenda-dim-blocked-tasks nil
         org-agenda-compact-blocks t
+
+        org-projectile-projects-file "~/docs/1.Projects/todos.org"
+
         )
 ;;;;; org-capture
   (setq org-capture-templates
@@ -417,45 +420,19 @@
   ;; This sets up my different context for my personal and work emails.
 ;;;;; mu4e-contexts
   (setq mu4e-contexts
-        `( ,(make-mu4e-context
-             :name "ben-gmail"
-             :enter-func (lambda () (mu4e-message "Switch to the ben-gmail context"))
-             :match-func (lambda (msg)
-                           (when msg
-                             (mu4e-message-maildir-matches msg "^/ben-gmail")))
-             :leave-func (lambda () (mu4e-clear-caches))
-             :vars '((user-mail-address     . "ben.fordnz@gmail.com")
-                     (user-full-name        . "Ben Ford")
-                     (mu4e-sent-folder      . "/ben-gmail/sent")
-                     ;; (mu4e-drafts-folder    . "/ben-gmail/drafts")
-                     ;; (mu4e-trash-folder     . "/ben-gmail/bin")
-                     (mu4e-refile-folder    . "/ben-gmail/archive")))
-           ,(make-mu4e-context
-             :name "perurbis"
-             :enter-func (lambda () (mu4e-message "Switch to the perurbis context"))
-             :match-func (lambda (msg)
-                           (when msg
-                             (mu4e-message-maildir-matches msg "^/perurbis")))
-             :leave-func (lambda () (mu4e-clear-caches))
-             :vars '((user-mail-address     . "ben@perurbis.com")
-                     (user-full-name        . "Ben Ford")
-                     (mu4e-sent-folder      . "/perurbis/sent")
-                     ;; (mu4e-drafts-folder    . "/perurbis/drafts")
-                     ;; (mu4e-trash-folder     . "/perurbis/bin")
-                     (mu4e-refile-folder    . "/perurbis/archive")))
-           ,(make-mu4e-context
-             :name "cdodev"
-             :enter-func (lambda () (mu4e-message "Switch to the cdodev context"))
-             :match-func (lambda (msg)
-                           (when msg
-                             (mu4e-message-maildir-matches msg "^/cdodev")))
-             :leave-func (lambda () (mu4e-clear-caches))
-             :vars '((user-mail-address     . "ben@commandodev.com")
-                     (user-full-name        . "Ben Ford")
-                     (mu4e-sent-folder      . "/cdodev/sent")
-                     ;; (mu4e-drafts-folder    . "/cdodev/drafts")
-                     ;; (mu4e-trash-folder     . "/cdodev/bin")
-                     (mu4e-refile-folder    . "/cdodev/archive")))))
+        `(,(make-mu4e-context
+            :name "cdodev"
+            :enter-func (lambda () (mu4e-message "Switch to the cdodev context"))
+            :match-func (lambda (msg)
+                          (when msg
+                            (mu4e-message-maildir-matches msg "^/cdodev")))
+            :leave-func (lambda () (mu4e-clear-caches))
+            :vars '((user-mail-address     . "ben@commando.dev")
+                    (user-full-name        . "Ben Ford")
+                    (mu4e-sent-folder      . "/cdodev/sent")
+                    ;; (mu4e-drafts-folder    . "/cdodev/drafts")
+                    ;; (mu4e-trash-folder     . "/cdodev/bin")
+                    (mu4e-refile-folder    . "/cdodev/archive")))))
   )
 
 ;;;; Prodigy
@@ -467,14 +444,6 @@
     :args '("server" "-D" "--disableFastRender")
     :cwd "~/docs/org/commandodev.com"
     :tags '(personal)
-    :stop-signal 'sigkill
-    :kill-process-buffer-on-stop t)
-  (prodigy-define-service
-    :name "IOHK Dev handbook"
-    :command "/run/current-system/sw/bin/hugo"
-    :args '("server" "-D" "-p" "1314")
-    :cwd "~/dev/tweag/iohk/dev-handbook"
-    :tags '(iohk)
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t)
   )
@@ -522,21 +491,18 @@
     :defer t))
 
 ;;;; Google Calendars
-
 (defun config/post-init-org-gcal ()
   ;; (load-file "~/.spacemacs.d/.iohk-cal-secret.el")
   (message "post-init-cal")
   (setq org-gcal-file-alist
-        '(("ben@commandodev.com" . "~/docs/org/cal/cal-cdodev.org")
-          ("ben.ford@tweag.io"   . "~/docs/org/cal/cal-tweag.org")
-          ;; ("your_second_calendar_id@gmail.com" . "/path/to/second_schedule_file.org"))
+        '(("ben@commando.dev" . "~/docs/org/cal/cal-cdodev.org")
           )
         )
   (setq calendar-month-name-array
         ["January" "February" "March"     "April"   "May"      "June"
          "July"    "August"   "September" "October" "November" "December"])
 
-  ;; Week days
+    ;; Week days
   (setq calendar-day-name-array
         ["Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday"])
 
