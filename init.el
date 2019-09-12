@@ -26,7 +26,6 @@
 
 ;;;; Configuration
 
-(load-file "~/.spacemacs.d/.iohk-cal-secret.el")
 (defvar redo-bindings? (if eric? t nil)
   "Redo spacemacs bindings? Defaults to nil for non-eric users.
 
@@ -52,7 +51,7 @@ They are all defined in `~/.emacs.d/core/core-dotspacemacs.el'.
 Check `dotspacemacs/get-variable-string-list' for all vars you can configure."
   (setq-default
    ;; Display
-   dotspacemacs-default-font `(,(if (x-list-fonts "Operator Mono")
+   dotspacemacs-default-font `(,(if (x-list-fonts "Operator Mona")
                                     "operator mono medium"
                                   "Source Code Pro")
                                :size ,(if (= 1080 (display-pixel-height)) 12 22))
@@ -121,7 +120,7 @@ Check `dotspacemacs/get-variable-string-list' for all vars you can configure."
   (add-to-list 'package-pinned-packages '(spaceline . "melpa-stable"))
   (add-to-list 'package-pinned-packages '(spaceline-all-the-icons . "melpa-stable"))
   (add-to-list 'package-pinned-packages '(all-the-icons . "melpa-stable"))
-  (setq browse-url-browser-function 'browse-url-chromium)
+  (setq browse-url-browser-function 'browse-url-chrome)
   (setq custom-file "~/.spacemacs.d/.custom-settings.el"))
 
 ;;;; Spacemacs/user-config

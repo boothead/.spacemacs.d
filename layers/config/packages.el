@@ -10,7 +10,6 @@
         magit
         ob org org-bullets
         ranger
-        mu4e
         prodigy
 
         ;; Owned Packages
@@ -21,7 +20,6 @@
         s
 
         ;; Local Packages
-        org-gcal
         (redo-spacemacs :location local)))
 
 ;;; Unowned Packages
@@ -356,85 +354,6 @@
 
   )
 
-;;;; mu4e
-(defun config/post-init-mu4e ()
-
-  ;; mu4e stuff mostly taken from
-  ;; * https://notanumber.io/2016-10-03/better-email-with-mu4e/
-  ;; * http://cachestocaches.com/2017/3/complete-guide-email-emacs-using-mu-and-/
-
-  ;; This is a helper to help determine which account context I am in based
-  ;; on the folder in my maildir the email (eg. ~/.mail/cdodev) is located in.
-  (defun mu4e-message-maildir-matches (msg rx)
-    (when rx
-      (if (listp rx)
-          ;; If rx is a list, try each one for a match
-          (or (mu4e-message-maildir-matches msg (car rx))
-              (mu4e-message-maildir-matches msg (cdr rx)))
-        ;; Not a list, check rx
-        (string-match rx (mu4e-message-field msg :maildir)))))
-
-  (defun choose-msmtp-account ()
-    (if (message-mail-p)
-        (save-excursion
-          (let*
-              ((from (save-restriction
-                       (message-narrow-to-headers)
-                       (message-fetch-field "from")))
-               (account
-                (cond
-                 ((string-match "ben.fordnz@gmail.com" from) "ben-gmail")
-                 ((string-match "ben@commandodev.com" from) "cdodev")
-                 ((string-match "ben@perurbis.com" from) "perurbis"))))
-            (setq message-sendmail-extra-arguments (list '"-a" account))))))
-
-  ;; mu4e configuration
-  (setq message-send-mail-function 'message-send-mail-with-sendmail
-        sendmail-program "/run/current-system/sw/bin/msmtp"
-        user-full-name "Ben Ford"
-        mu4e-html2text-command "w3m -dump -T text/html -cols 72"
-        mu4e-attachment-dir "~/docs/"
-        mu4e-view-show-images t
-        mu4e-update-interval 300
-        )
-
-  (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-action-view-in-browser) t)
-
-  ;; Spell checking ftw.
-  (add-hook 'mu4e-compose-mode-hook 'flyspell-mode)
-  ;; This hook correctly modifies the \Inbox and \Starred flags on email when they are marked.
-  ;; Without it refiling (archiving) and flagging (starring) email won't properly result in
-  ;; the corresponding gmail action.
-  (add-hook 'mu4e-mark-execute-pre-hook
-            (lambda (mark msg)
-              (cond ((member mark '(refile trash)) (mu4e-action-retag-message msg "-\\Inbox"))
-                    ((equal mark 'flag) (mu4e-action-retag-message msg "\\Starred"))
-                    ((equal mark 'unflag) (mu4e-action-retag-message msg "-\\Starred")))))
-
-  ;; Use the correct account context when sending mail based on the from header.
-  (setq message-sendmail-envelope-from 'header)
-  (add-hook 'message-send-mail-hook 'choose-msmtp-account)
-
-  ;; try and make html a bit nicer
-
-  ;; This sets up my different context for my personal and work emails.
-;;;;; mu4e-contexts
-  (setq mu4e-contexts
-        `(,(make-mu4e-context
-            :name "cdodev"
-            :enter-func (lambda () (mu4e-message "Switch to the cdodev context"))
-            :match-func (lambda (msg)
-                          (when msg
-                            (mu4e-message-maildir-matches msg "^/cdodev")))
-            :leave-func (lambda () (mu4e-clear-caches))
-            :vars '((user-mail-address     . "ben@commando.dev")
-                    (user-full-name        . "Ben Ford")
-                    (mu4e-sent-folder      . "/cdodev/sent")
-                    ;; (mu4e-drafts-folder    . "/cdodev/drafts")
-                    ;; (mu4e-trash-folder     . "/cdodev/bin")
-                    (mu4e-refile-folder    . "/cdodev/archive")))))
-  )
-
 ;;;; Prodigy
 
 (defun config/post-init-prodigy ()
@@ -489,24 +408,6 @@
 (defun config/init-faceup ()
   (use-package faceup
     :defer t))
-
-;;;; Google Calendars
-(defun config/post-init-org-gcal ()
-  ;; (load-file "~/.spacemacs.d/.iohk-cal-secret.el")
-  (message "post-init-cal")
-  (setq org-gcal-file-alist
-        '(("ben@commando.dev" . "~/docs/org/cal/cal-cdodev.org")
-          )
-        )
-  (setq calendar-month-name-array
-        ["January" "February" "March"     "April"   "May"      "June"
-         "July"    "August"   "September" "October" "November" "December"])
-
-    ;; Week days
-  (setq calendar-day-name-array
-        ["Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday"])
-
-  )
 
 ;;;; Outshine
 
