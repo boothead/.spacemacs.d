@@ -78,7 +78,8 @@
    ;; Languages
    javascript
    emacs-lisp
-   hie-nix
+   ;; hie-nix
+   (lsp-haskell :location (recipe :fetcher github :repo "emacs-lsp/lsp-haskell"))
    lsp
    nixos
    (purescript :variables
